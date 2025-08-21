@@ -6,6 +6,21 @@
   let MIRROR = false;
   let REQUIRE_AT_LEAST = 10;
   let CENTER_IMAGE = "/static-center-banner.png";
+  async function fetchList() {
+    const res = await fetch("/api/videos?ts=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+    const data = await res.json();
+
+    REFRESH_SECONDS = data.refreshSeconds ?? REFRESH_SECONDS;
+    MIRROR = !!data.mirrorVideos;
+    REQUIRE_AT_LEAST = data.requireAtLeast ?? REQUIRE_AT_LEAST;
+    CENTER_IMAGE = data.staticCenterImage || CENTER_IMAGE;
+
+    // Ensure newest-first here as well (defensive)
+    const items = (data.media || []).slice().sort((a, b) => (b.sortKey ?? 0) - (a.sortKey ?? 0));
+    return items;
+  }
+
   function shuffle(arr) {
     const a = arr.slice();
     for (let i = a.length - 1; i > 0; i--) {
@@ -15,31 +30,24 @@
     return a;
   }
 
-
-  async function fetchList() {
-    const res = await fetch("/api/videos?ts=" + Date.now(), { cache: "no-store" });
-    if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
-    const data = await res.json();
-    REFRESH_SECONDS = data.refreshSeconds ?? REFRESH_SECONDS;
-    MIRROR = !!data.mirrorVideos;
-    REQUIRE_AT_LEAST = data.requireAtLeast ?? REQUIRE_AT_LEAST;
-    CENTER_IMAGE = data.staticCenterImage || CENTER_IMAGE;
-    return data.media || [];
-  }
-
   function pickTen(items) {
     if (!items.length) return [];
-    if (items.length <= 10) {
-      // When we have 10 or fewer items, just shuffle them so the order changes each refresh
-      return shuffle(items);
-    }
-    // Otherwise, keep newest 3, pick 7 random from the rest, and shuffle final order
+
+    // Always keep the three newest items from the *sorted* list
     const newest3 = items.slice(0, 3);
+
+    if (items.length <= 3) {
+      return newest3; // nothing else to pick
+    }
+
     const rest = items.slice(3);
-    const shuffledRest = shuffle(rest);
-    const random7 = shuffledRest.slice(0, 7);
-    return shuffle([...newest3, ...random7]);
+    // Pick up to 7 at random from the remainder
+    const random7 = shuffle(rest).slice(0, Math.min(7, rest.length));
+
+    // Shuffle final set *positions* but keep membership (newest 3 are guaranteed included)
+    return shuffle([...newest3, ...random7]).slice(0, 10);
   }
+
   
   function clearCells() {
     document.querySelectorAll(".cell").forEach(c => {

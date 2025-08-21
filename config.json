@@ -1,17 +1,10 @@
 {
   "mediaRoot": "./media",
   "folder": "hiv_impact_booth",
-  "extensions": [
-    ".mp4",
-    ".mov",
-    ".webm",
-    ".png",
-    ".jpg",
-    ".jpeg",
-    ".gif"
-  ],
+  "extensions": [".mp4", ".mov", ".webm", ".png", ".jpg", ".jpeg", ".gif"],
   "refreshSeconds": 60,
   "requireAtLeast": 10,
   "mirrorVideos": false,
-  "staticCenterImage": "/static-center-banner.png"
+  "staticCenterImage": "/static-center-banner.png",
+  "recentStrategy": "birthtime"
 }

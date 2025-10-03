@@ -1,6 +1,6 @@
 {
   "mediaRoot": "./media",
-  "folder": "hiv_impact_booth",
+  "folder": "./",
   "extensions": [".mp4", ".mov", ".webm", ".png", ".jpg", ".jpeg", ".gif"],
   "refreshSeconds": 60,
   "requireAtLeast": 10,

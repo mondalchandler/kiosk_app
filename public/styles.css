@@ -66,9 +66,7 @@ body {
   height: 100%;
   object-fit: cover;
 }
-.mirror {
-  transform: scaleX(-1);
-}
+
 .meta {
   position: absolute;
   bottom: 10px;
@@ -77,3 +75,44 @@ body {
   font-size: 14px;
   letter-spacing: 0.3px;
 }
+
+/* Wrap each media so transforms are clipped and centered */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* prevents rotated edges from peeking out */
+}
+
+/* Placeholder overlay that fades away when the video is ready */
+.placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.25s ease-out;
+  opacity: 1;
+  pointer-events: none;
+  background: #000; /* avoids flash of white behind PNG transparency */
+}
+.placeholder.hidden {
+  opacity: 0;
+}
+
+/* (Already present in your CSS, but ensure these exist) */
+.cell {
+  position: relative;
+  overflow: hidden;
+}
+.cell video,
+.cell img {
+  display: block;
+}
+
+/* Optional: flip horizontal if MIRROR=true in config.json */
+.mirror {
+  transform: scaleX(-1);
+}
+.cell { position: relative; overflow: hidden; }
+.grid img, .grid video { display: block; }

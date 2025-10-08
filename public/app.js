@@ -329,14 +329,14 @@
   async function refresh() {
     try {
       const items = await fetchList();
-      statusEl.textContent = `${items.length} media file(s) — refresh every ${REFRESH_SECONDS}s`;
+      //statusEl.textContent = `${items.length} media file(s) — refresh every ${REFRESH_SECONDS}s`;
       {
         const chosen = pickTenNew(items, 10);
         layout(chosen);
       }
     } catch (e) {
       console.error(e);
-      statusEl.textContent = "Error loading media. Retrying…";
+      //statusEl.textContent = "Error loading media. Retrying…";
     }
   }
 

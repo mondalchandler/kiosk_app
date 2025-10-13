@@ -1,0 +1,46 @@
+HIV Impact Booth Kiosk — Vendor Guide (macOS)
+
+Overview
+- Self‑contained player showing a 3×4 mosaic in a 960×1280 portrait window.
+- Drag & drop media into a folder; the app auto‑detects and plays.
+- Placeholders show while items load; landscape videos auto‑rotate 90° to fit portrait cells.
+- No admin rights or command line required.
+
+Quick Start (macOS)
+1) Unzip the delivered archive (e.g., “Kiosk-macOS.zip”) to your Desktop.
+2) Double‑click “Kiosk.app” to open it.
+   • If macOS warns that the app is from an unidentified developer: right‑click “Kiosk.app” → Open → Open.
+3) A 960×1280 window appears (black background with placeholders).
+4) Press ⌘O (Cmd+O) to open the media folder, or open it directly at:
+   • ~/Documents/Kiosk Media
+5) Drag videos/images into “Kiosk Media”. The app auto‑detects files and begins playing them (up to 10 per round). Placeholders fade out as content loads.
+
+Supported Formats
+- Video: .mp4, .mov, .webm, .m4v, .ogg  (H.264 MP4 recommended)
+- Image: .jpg, .jpeg, .png, .gif, .webp, .avif
+
+Behavior
+- Shuffle: every 60 seconds, the app randomly selects 10 items, avoiding repeats from the immediate previous round (items may reappear in later rounds).
+- Auto‑rotation: landscape videos rotate 90° clockwise and scale to cover the portrait cell.
+- Placeholders: always shown while content loads or when a slot is empty.
+- Open Media Folder: ⌘O (Cmd+O).
+
+Positioning
+- The window is fixed at 960×1280 (3:4). Position it in the target “Viewable Media” region of your canvas or video wall.
+- Need a different position/size or fullscreen variant? We can provide a tailored build on request.
+
+Troubleshooting
+- Only placeholders visible:
+  • Confirm files are in “~/Documents/Kiosk Media”.
+  • Verify file extensions and that files aren’t zero‑byte.
+  • Wait up to 60 seconds for a refresh or close/reopen the app.
+- A file doesn’t show:
+  • Check for typos/special characters in the filename.
+  • Prefer H.264 MP4 for best playback reliability.
+- Gatekeeper warning:
+  • Right‑click “Kiosk.app” → Open → Open (one‑time allow).
+
+Contact
+- BoundlessAI Support
+- Email: support@boundlesslife.com
+- Happy to hop on a quick call to walk through setup.

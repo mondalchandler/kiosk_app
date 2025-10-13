@@ -1,0 +1,130 @@
+KIOSK DESKTOP – WINDOWS INSTRUCTIONS (SERVER + UI IN ONE)
+========================================================
+
+PREREQUISITE: INSTALL NODE.JS (ONCE)
+------------------------------------
+1) Download and run the official Node.js installer (LTS/current works; use this build):
+   https://nodejs.org/dist/v22.20.0/node-v22.20.0-x64.msi
+2) Accept the defaults. When it finishes, close and reopen Command Prompt/PowerShell.
+3) Verify:
+   node -v
+   npm -v
+   (Both should print versions; if not, restart Windows and try again.)
+
+
+FOLDER YOU WILL RECEIVE
+-----------------------
+kiosk-electron-node-selfhost\
+  Start Kiosk (Windows).cmd         <-- double-click this to run the kiosk
+  main.js
+  package.json
+  README.md
+  media\                            <-- DROP YOUR VIDEOS/IMAGES HERE
+  renderer\
+    index.html
+    app.js
+    styles.css
+    placeholder.png
+    static-center-banner.png
+
+
+HOW TO RUN (VENDOR-FRIENDLY)
+----------------------------
+1) Unzip the folder anywhere (e.g., C:\\kiosk-electron-node-selfhost\\).
+2) Double-click: Start Kiosk (Windows).cmd
+   • On first run, it will download a local Electron runtime (via npx). Internet is required for this step only.
+   • A window opens at 960x1280 in the top-left of your primary display.
+   • You will see placeholders in all cells initially.
+3) Drag and drop your media files into the media\\ folder.
+   • Supported video: .mp4 .mov .webm .m4v .ogg
+   • Supported image: .jpg .jpeg .png .gif .webp .avif
+   • The app rescans every 60 seconds and picks up new files automatically.
+   • Landscape videos are auto-rotated 90° to fill the portrait cells.
+   • A placeholder image is always shown per cell while the media loads.
+4) To stop the app, close the kiosk window. To restart, double-click the .cmd again.
+
+
+OVERVIEW
+--------
+This package runs a small local server (built-in; no Express or extra installs)
+and an Electron window to display the 4x3 mosaic. You can drag and drop media
+files into the 'media' folder at any time. The app rescans automatically.
+
+No admin rights are required beyond installing Node.js once.
+No global installs are required for the app itself.
+
+
+WHAT YOU NEED
+-------------
+• Windows 10 or 11
+• Internet on first launch (to fetch a local Electron runtime via npx)
+• Node.js installed (see the prerequisite above)
+• A GPU/driver that can play MP4/H.264 video smoothly (typical modern Windows PCs are fine)
+
+
+DISPLAY / LAYOUT
+----------------
+• Window size: 960 x 1280 (3:4 aspect).
+• Grid: 4 columns x 3 rows.
+• The middle row has a center banner that spans two columns.
+• Styling is controlled by renderer\styles.css and matches the provided spec.
+
+
+MEDIA SELECTION LOGIC
+---------------------
+• Every refresh (default: 60 seconds), the app:
+  1) Randomizes all available media.
+  2) Picks 10 items for the cells.
+  3) Avoids repeating items from the immediately previous round.
+  4) Never permanently excludes anything; items can return in later refreshes.
+• If there are fewer than 10 media items, the app will fill what it can and keep placeholders for the rest.
+
+
+CENTER BANNER
+-------------
+• The center banner image is renderer\static-center-banner.png.
+• Replace it with any image of your choice (keep the same filename).
+
+
+MIRROR OPTION
+-------------
+• By default, mirroring is off.
+• If you need to mirror horizontally, contact us to enable it in the configuration.
+
+
+TROUBLESHOOTING
+---------------
+• Window doesn’t open / Electron not found:
+  - Ensure Node.js is installed and you double-clicked “Start Kiosk (Windows).cmd” inside the unzipped folder.
+  - First run requires internet (npx downloads a local Electron runtime).
+• Media not appearing:
+  - Ensure files are in the media\ folder (same level as Start Kiosk (Windows).cmd).
+  - Wait up to 60 seconds for the auto-refresh (or relaunch the app to force a rescan).
+  - Check that the file extensions are supported.
+  - Filenames with spaces are supported.
+• Placeholders don’t disappear:
+  - The placeholder remains visible until each image/video is ready to render.
+  - For videos, autoplay requires them to be muted (the app mutes them automatically).
+• Window position/size:
+  - Default is 960x1280 at top-left. If you need a different size/position or full-screen mapping, contact us for a variant launcher.
+• Logs:
+  - If requested, press Ctrl+Shift+I to open DevTools, then check “Console” and “Network” for load errors.
+
+
+OPTIONAL – BUILD A SINGLE .EXE INSTALLER (FOR IT/OPS)
+-----------------------------------------------------
+(Do this on a Windows machine; only needed if you want a click-to-install executable
+that bundles Electron so first-run internet isn’t required.)
+1) Open Command Prompt in the folder (Shift + Right-Click → “Open PowerShell/Terminal here”).
+2) Run:
+   npm install
+   npm run dist:win
+3) Output:
+   .\dist\Kiosk Setup 1.0.0.exe
+4) Hand that .exe to the vendor.
+
+
+SUPPORT
+-------
+If you have questions or need a full-screen/top-left variant for a 3840x2160 wall,
+let us know and we’ll provide an alternate launcher without changing your workflow.

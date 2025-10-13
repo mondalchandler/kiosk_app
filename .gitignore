@@ -140,3 +140,27 @@ vite.config.ts.timestamp-*
 
 # macOS Finder files
 .DS_Store
+
+# builds & vendors
+dist/
+out/
+release/
+*.zip
+*.exe
+*.dmg
+*.pkg
+*.AppImage
+*.asar
+*.msi
+*.7z
+*.tar.gz
+*.tar.xz
+
+# Electron bundles
+*.app/
+**/Electron Framework*
+**/*.node
+
+# Node
+node_modules/
+npm-cache/

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Kiosk — Windows</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main id="app">
+    <section class="grid grid-4x3" aria-label="video mosaic">
+      <!-- Row 1 -->
+      <div class="cell" data-cell="r1c1"></div>
+      <div class="cell" data-cell="r1c2"></div>
+      <div class="cell" data-cell="r1c3"></div>
+      <div class="cell last-child" data-cell="r1c4"></div>
+      <!-- Row 2 -->
+      <div class="cell center-cell" data-cell="r2c1"></div>
+      <div class="cell center-cell span-2 center-banner" data-cell="r2c2">
+        <img id="centerBanner" alt="Center banner" />
+      </div>
+      <div class="cell center-cell last-child" data-cell="r2c4"></div>
+      <!-- Row 3 -->
+      <div class="cell" data-cell="r3c1"></div>
+      <div class="cell" data-cell="r3c2"></div>
+      <div class="cell" data-cell="r3c3"></div>
+      <div class="cell last-child" data-cell="r3c4"></div>
+    </section>
+    <div class="meta"><span id="status"></span></div>
+  </main>
+  <script>window.API_BASE=''</script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

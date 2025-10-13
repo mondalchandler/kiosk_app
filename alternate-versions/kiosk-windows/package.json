@@ -1,0 +1,13 @@
+{
+  "name": "kiosk-electron-node",
+  "version": "1.0.0",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "dev": "npx --yes electron .",
+    "dist:win": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.13.3"
+  }
+}

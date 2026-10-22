@@ -1,0 +1,36 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #0d0f12; }
+#app { width: 100vw; height: 100vh; height: 100dvh; display: grid; place-items: center; }
+.grid {
+  width: min(100vw, 75vh);
+  width: min(100vw, 75dvh);
+  height: min(100vh, 133.333333vw);
+  height: min(100dvh, 133.333333vw);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: clamp(2px, 0.6vmin, 10px);
+  padding: clamp(2px, 0.6vmin, 10px);
+  background: #fff;
+}
+.cell { position: relative; min-width: 0; min-height: 0; overflow: hidden; background: #000; }
+.center-banner { grid-column: span 2; }
+.cell img, .cell video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.center-banner img { width: 100%; height: 100%; }
+.video-wrapper, .image-wrapper, .placeholder-wrapper { width: 100%; height: 100%; overflow: hidden; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.launch-note { max-width: 30rem; padding: 2rem; color: #fff; font: 1.25rem/1.5 system-ui, sans-serif; text-align: center; }
+.media-layer { position: absolute; inset: 0; opacity: 0; transition: opacity 800ms ease-in-out; }
+.media-layer:not(.active) { will-change: opacity; }
+.media-layer.visible { opacity: 1; }
+.folder-prompt { position: fixed; inset: 0; display: grid; place-items: center; padding: 1rem; background: rgb(0 0 0 / 70%); font: 1rem/1.5 system-ui, sans-serif; color: #fff; }
+.folder-prompt[hidden] { display: none; }
+.folder-card { width: min(100%, 30rem); padding: 1.5rem; border: 1px solid #888; border-radius: 12px; background: #20242a; }
+.folder-card h1 { margin: 0 0 .5rem; font-size: 1.4rem; }
+.folder-card p { margin: 0 0 1rem; }
+.folder-message { min-height: 1.5em; color: #ffd18a; }
+.folder-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.folder-actions button { border: 0; border-radius: 6px; padding: .7rem 1rem; font: inherit; cursor: pointer; }
+#chooseFolder { color: #111; background: #fff; }
+#useBundled { color: #fff; background: #4d5560; }

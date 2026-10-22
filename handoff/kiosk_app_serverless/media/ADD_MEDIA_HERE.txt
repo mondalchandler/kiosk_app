@@ -1,0 +1,1 @@
+Place your images and videos in this folder. This note is ignored by the kiosk.

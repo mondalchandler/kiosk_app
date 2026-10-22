@@ -1,0 +1,22 @@
+KIOSK HANDOFF - TWO LAUNCH OPTIONS
+
+Extract this ZIP before opening either version. The media folders start empty.
+Use one of the two folders below. Put the images and videos you want displayed in that folder's media subfolder.
+
+OPTION 1: WINDOWS LOCAL SERVER
+Folder: kiosk_app_one_click_windows
+1. Double-click Start Kiosk.cmd. The kiosk opens in your default browser.
+2. Keep the command window open while the kiosk runs.
+3. Add or remove files in kiosk_app_one_click_windows/media. New files are detected within about 10 seconds.
+This option uses Windows PowerShell already on the computer; no Node.js or npm install is needed.
+
+OPTION 2: SERVERLESS
+Folder: kiosk_app_serverless
+1. Open index.html in Chrome or Edge (double-click if either is the default browser, or use Open with).
+2. Click Choose media folder and select kiosk_app_serverless/media. Allow folder access if prompted.
+3. Add or remove files in that media folder. New files are detected within about 10 seconds while access remains granted.
+If the browser asks for folder access again later, press F2 and choose the media folder again.
+
+Both versions preserve the portrait kiosk layout and fit the browser window. Move the browser to the wall display and press F11 for full screen. The media cells rotate about once a minute; empty cells show placeholders.
+
+Supported files: PNG, JPG, JPEG, GIF, WebP, AVIF, MP4, MOV, WebM, M4V. Video playback depends on the browser's codec support.

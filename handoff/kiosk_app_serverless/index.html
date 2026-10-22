@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HIV Impact Booth Kiosk</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main id="app">
+    <section class="grid" aria-label="Media mosaic">
+      <div class="cell" data-cell="r1c1"></div>
+      <div class="cell" data-cell="r1c2"></div>
+      <div class="cell" data-cell="r1c3"></div>
+      <div class="cell" data-cell="r1c4"></div>
+      <div class="cell" data-cell="r2c1"></div>
+      <div class="cell center-banner" data-cell="r2c2"><img id="centerBanner" alt="Center banner"></div>
+      <div class="cell" data-cell="r2c4"></div>
+      <div class="cell" data-cell="r3c1"></div>
+      <div class="cell" data-cell="r3c2"></div>
+      <div class="cell" data-cell="r3c3"></div>
+      <div class="cell" data-cell="r3c4"></div>
+    </section>
+    <span id="status" class="visually-hidden" aria-live="polite"></span>
+  </main>
+  <div id="folderPrompt" class="folder-prompt" role="dialog" aria-label="Media folder">
+    <div class="folder-card">
+      <h1>Media folder</h1>
+      <p>Choose the <strong>media</strong> folder beside this page so images and videos you add will appear automatically.</p>
+      <p id="folderMessage" class="folder-message"></p>
+      <div class="folder-actions">
+        <button id="chooseFolder" type="button">Choose media folder</button>
+        <button id="useBundled" type="button">Show empty kiosk</button>
+      </div>
+    </div>
+  </div>
+  <script id="bundledMedia" type="application/json">[]</script>
+  <script src="app.js" defer></script>
+</body>
+</html>
